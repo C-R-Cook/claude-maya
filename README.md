@@ -24,7 +24,7 @@ Click it once and the port opens: the icon turns blue and "Claude port open" app
 
 If you quit Maya with the port open, the icon may still show blue next time you launch, even though the port is closed. One click puts it back in sync. Closing the port before you quit avoids it.
 
-Prefer to set it up by hand? Copy both PNGs from `icons/` into your Maya icons folder (`Documents\maya\2027\prefs\icons`), then make a shelf button with `claude_port_off.png` as its icon, the label `Claude port`, and the toggle code from inside `install_shelf_button.py` as its Python command.
+Prefer to set it up by hand? Copy both PNGs from `icons/` into your Maya icons folder (`Documents\maya\<version>\prefs\icons`, for example `Documents\maya\2027\prefs\icons`), then make a shelf button with `claude_port_off.png` as its icon, the label `Claude port`, and the toggle code from inside `install_shelf_button.py` as its Python command.
 
 **2. Put the files in a folder**
 
@@ -76,5 +76,11 @@ If it doesn't open on startup, other tools may be in the way. Plugins such as MA
 - Ask Claude to wrap scene changes in one undo chunk, so one Ctrl+Z reverts them.
 - Close the port when you're done: click the shelf button again.
 - Claude Code runs in the cloud, so scene information like node names and weights leaves your machine. Check your studio's policy before using it on show assets.
+
+## Requirements
+
+- Maya 2022 or newer (Python 3). Older versions won't work.
+- The shelf button installs into whichever Maya version you run it in. Using more than one version? Run the installer once in each.
+- Claude Code running locally on the same machine as Maya.
 
 Tested with Maya 2027 on Windows.
