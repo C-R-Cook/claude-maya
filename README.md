@@ -32,7 +32,7 @@ Make a working folder, for example `D:\\Work\\claude-maya`, and put `maya\_send.
 
 Or let Claude do it: start a Code session in an empty folder and say:
 
-> Set up the Maya bridge from > https://github.com/C-R-Cook/claude-maya in this folder.
+> Set up the Maya bridge from https://github.com/C-R-Cook/claude-maya in this folder.
 
 **3. Start Claude Code in that folder**
 
