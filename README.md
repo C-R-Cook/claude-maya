@@ -55,12 +55,33 @@ Maya's commandPort only returns the value of a single expression, and it doesn't
 - Errors come back as a full traceback, and the script exits with code 1.
 
 ```
-python maya_send.py "import maya.cmds as cmds
-sel = cmds.ls(selection=True, long=True)
-sel"
-
 python maya_send.py -f script.py
+python maya_send.py "__import__('maya.cmds').cmds.ls(selection=True, long=True)"
 ```
+
+Claude writes multi-line code to a temporary file and sends it with `-f`, so every command stays on one line. A command with line breaks in it doesn't match the permission rule, and you'd get asked every time. `CLAUDE.md` tells Claude to do this, so you don't have to.
+
+## Using it from a parent folder
+
+If you start Claude in a folder above this one (say, the folder that holds all your Maya projects, with this repo cloned inside it as `claude-maya`), it needs two small changes. Claude only reads the `CLAUDE.md` in the folder you start in, and the commands need the subfolder in their path.
+
+**1. Add a `CLAUDE.md` to the parent folder** (or add this to the one you already have):
+
+```markdown
+# Maya
+@claude-maya/CLAUDE.md
+
+The Maya bridge lives in `claude-maya/`. From this folder, always run it as
+`python claude-maya/maya_send.py "..."`, not `python maya_send.py`.
+```
+
+The `@claude-maya/CLAUDE.md` line pulls in this repo's instructions, and the next line fixes the path.
+
+**2. Allow the new command.** In a session in the parent folder, ask Claude:
+
+> Add a permission rule so `python claude-maya/maya_send.py` runs with any arguments without asking.
+
+Keep the files inside `claude-maya` rather than moving them up a level, so `git pull` still updates them.
 
 ## Advanced: open the port automatically
 

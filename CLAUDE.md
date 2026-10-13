@@ -1,12 +1,13 @@
 # Talking to Maya
 
-Maya has a commandPort open on `localhost:7001` in Python mode. Use `maya_send.py` in this folder; always start the command with `python maya_send.py` (one approval pattern).
+Maya has a commandPort open on `localhost:7001` in Python mode. Use `maya_send.py` in this folder; always start the command with `python maya_send.py`, and keep the whole command on one line, so a single permission rule covers every call.
+
+- **Multi-line code:** write it to a temporary `.py` file (your scratchpad if you have one) and run `python maya_send.py -f <file>`. Don't pass multi-line code inline: a command with line breaks in it doesn't match the permission rule, so the user gets asked every time.
+- **One-liners** can go inline, as long as they don't rely on an earlier import (see the second example).
 
 ```bash
-python maya_send.py "import maya.cmds as cmds
-sel = cmds.ls(selection=True, long=True)
-sel"
-python maya_send.py -f script.py
+python maya_send.py -f C:/path/to/scratch/maya_cmd.py
+python maya_send.py "__import__('maya.cmds').cmds.ls(selection=True, long=True)"
 ```
 
 Options: `--host`, `--port` (default 7001), `--timeout` (default 10s).
