@@ -11,6 +11,7 @@ Companion repo for the video **Claude Code in Maya for VFX Artists**: <video lin
 | `install_shelf_button.py` | Adds a "Claude port" button to your shelf, icon included. Run it once. |
 | `maya_send.py` | The messenger. Claude runs it to send Python to Maya and read the reply. |
 | `CLAUDE.md` | Tells Claude how to talk to Maya. Claude reads it automatically when a session starts in this folder. |
+| `CLAUDE_top-level.md` | Only for starting Claude in a folder above this one. See "Using it from a parent folder". Ignore or delete it otherwise. |
 | `icons/` | The shelf icons, blue for open and grey for closed (32 px and 64 px), if you'd rather set the button up yourself. |
 
 ## Setup
@@ -64,17 +65,9 @@ Claude writes multi-line code to a temporary file and sends it with `-f`, so eve
 
 If you start Claude in a folder above this one (say, the folder that holds all your Maya projects, with this repo cloned inside it as `claude-maya`), it needs two small changes. Claude only reads the `CLAUDE.md` in the folder you start in, and the commands need the subfolder in their path.
 
-**1. Add a `CLAUDE.md` to the parent folder** (or add this to the one you already have):
+**1. Copy `CLAUDE_top-level.md` up to the parent folder and rename it `CLAUDE.md`.** Copy it, don't move it, so the repo stays intact for `git pull`. Already have a `CLAUDE.md` up there? Paste its contents onto the end of yours instead.
 
-```markdown
-# Maya
-@claude-maya/CLAUDE.md
-
-The Maya bridge lives in `claude-maya/`. From this folder, always run it as
-`python claude-maya/maya_send.py "..."`, not `python maya_send.py`.
-```
-
-The `@claude-maya/CLAUDE.md` line pulls in this repo's instructions, and the next line fixes the path.
+It pulls in this repo's instructions (the `@claude-maya/CLAUDE.md` line) and tells Claude to use the `claude-maya/` path. Inside the repo it does nothing: Claude only reads files named exactly `CLAUDE.md`.
 
 **2. Allow the new command.** In a session in the parent folder, ask Claude:
 
