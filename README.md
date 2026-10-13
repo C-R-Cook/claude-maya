@@ -12,7 +12,6 @@ Companion repo for the video **Claude Code in Maya for VFX Artists**: <video lin
 | `maya_send.py` | The messenger. Claude runs it to send Python to Maya and read the reply. |
 | `CLAUDE.md` | Tells Claude how to talk to Maya. Claude reads it automatically when a session starts in this folder. |
 | `icons/` | The shelf icons, blue for open and grey for closed (32 px and 64 px), if you'd rather set the button up yourself. |
-| `userSetup_snippet.py` | Advanced: opens the port automatically when Maya starts. |
 
 ## Setup
 
@@ -82,14 +81,6 @@ The `@claude-maya/CLAUDE.md` line pulls in this repo's instructions, and the nex
 > Add a permission rule so `python claude-maya/maya_send.py` runs with any arguments without asking.
 
 Keep the files inside `claude-maya` rather than moving them up a level, so `git pull` still updates them.
-
-## Advanced: open the port automatically
-
-If you want the port open every time Maya starts, add `userSetup_snippet.py` to the end of your `userSetup.py`:
-
-- Windows: `Documents\maya\scripts\userSetup.py` (create it if it doesn't exist)
-
-If it doesn't open on startup, other tools may be in the way. Plugins such as MASH and Quixel ship their own `userSetup.py`, and if one of them errors at startup, yours can get skipped. Check the top of the Script Editor history after a fresh launch, or just use the shelf button.
 
 ## Safety
 
